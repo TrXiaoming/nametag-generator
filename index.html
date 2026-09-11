@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名牌產生器 (A4 橫向 3x3)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 左側操作面板 (列印時隱藏) -->
+    <aside class="ui-wrapper no-print">
+        <div class="header">
+            <h1>🏷️ 名牌產生工具</h1>
+            <p>大量產生 A4 橫向 3x3 名牌</p>
+        </div>
+        
+        <div class="control-group">
+            <label for="nameList">1. 貼上名單 (每行一個)</label>
+            <textarea id="nameList" placeholder="王小明&#10;陳大華&#10;李雅婷"></textarea>
+        </div>
+
+        <div class="control-group">
+            <label for="bgSelect">2. 背景設定</label>
+            <select id="bgSelect" class="form-select">
+                <option value="upload">📂 自訂上傳...</option>
+                <option value="bg1.png">🏖️ 預設背景 1 (海灘)</option>
+                <option value="bg2.png">🌿 預設背景 2 (綠葉邊框)</option>
+                <option value="bg3.png">👋 預設背景 3 (Hello粉紅)</option>
+            </select>
+            <label for="bgImage" id="bgUploadLabel" class="file-upload-btn">選擇圖片</label>
+            <input type="file" id="bgImage" accept="image/*" style="display: none;">
+            <div id="imagePreview" class="image-preview">
+                <span>🖼️ 尚未選擇圖片</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="fontSize">3. 調整字體大小</label>
+            <div class="range-wrapper">
+                <input type="range" id="fontSize" min="30" max="150" value="88">
+                <input type="number" id="fontSizeNumber" min="30" max="150" value="88" class="badge" style="width: 70px; border: 1px solid var(--border); outline: none;">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="textColor">4. 字體顏色</label>
+            <input type="color" id="textColor" value="#1f2937">
+        </div>
+
+        <div class="control-group">
+            <label>5. 微調姓名位置 (px)</label>
+            <div class="position-controls">
+                <div class="pos-item">
+                    <label for="offsetX">左右 (X偏移)</label>
+                    <input type="number" id="offsetX" value="0">
+                </div>
+                <div class="pos-item">
+                    <label for="offsetY">上下 (Y偏移)</label>
+                    <input type="number" id="offsetY" value="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="generateBtn" class="btn primary-btn">✨ 產生預覽</button>
+            <button id="printBtn" class="btn secondary-btn" disabled>🖨️ 列印 / 儲存 PDF</button>
+        </div>
+        
+        <div class="print-hint">
+            <strong>列印設定提示：</strong>
+            <ul>
+                <li>版面: 橫向 (Landscape)</li>
+                <li>紙張: A4</li>
+                <li>邊距: 無 (None)</li>
+                <li>選項: 勾選「背景圖形」</li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- 右側預覽與列印區 -->
+    <main class="preview-wrapper" id="previewWrapper">
+        <div class="placeholder-text" id="placeholderText">
+            <h3>準備開始</h3>
+            <p>請在左側輸入資料並點擊「產生預覽」</p>
+        </div>
+        <div id="printContainer">
+            <!-- 動態生成的頁面會放置於此 -->
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+:root {
+    --primary: #4F46E5;
+    --primary-hover: #4338CA;
+    --bg-color: #F3F4F6;
+    --surface: #FFFFFF;
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --border: #E5E7EB;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
+
+/* 螢幕預覽佈局 (SCREEN LAYOUT) */
+@media screen {
+    body {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .ui-wrapper {
+        width: 380px;
+        min-width: 380px;
+        background: var(--surface);
+        padding: 30px 24px;
+        border-right: 1px solid var(--border);
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.03);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        overflow-y: auto;
+        z-index: 10;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+        color: var(--primary);
+        margin-bottom: 5px;
+    }
+    
+    .header p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .control-group label {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #374151;
+    }
+
+    textarea {
+        height: 160px;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        resize: vertical;
+        font-family: inherit;
+        font-size: 1rem;
+        line-height: 1.5;
+        transition: border-color 0.2s;
+    }
+    
+    textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .file-upload-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        background: var(--bg-color);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+        color: var(--text-main);
+        transition: all 0.2s;
+    }
+    .file-upload-btn:hover {
+        background: #E5E7EB;
+    }
+
+    .image-preview {
+        height: 140px;
+        border: 2px dashed #D1D5DB;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: contain;
+        background-color: white;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: var(--text-muted);
+        overflow: hidden;
+        margin-top: 5px;
+    }
+
+    .range-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    input[type="range"] {
+        flex: 1;
+        accent-color: var(--primary);
+    }
+
+    .badge {
+        background: var(--bg-color);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        color: var(--primary);
+        min-width: 50px;
+        text-align: center;
+    }
+    
+    input[type="color"] {
+        width: 100%;
+        height: 40px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .form-select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        margin-bottom: 8px;
+        background: white;
+    }
+
+    .position-controls {
+        display: flex;
+        gap: 12px;
+    }
+    
+    .pos-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .pos-item label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+    
+    .pos-item input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        text-align: center;
+        font-family: inherit;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .btn {
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .primary-btn {
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+    }
+    .primary-btn:hover { 
+        background: var(--primary-hover); 
+        transform: translateY(-1px);
+    }
+    
+    .secondary-btn {
+        background: white;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+    }
+    .secondary-btn:hover:not(:disabled) { 
+        background: #EEF2FF; 
+    }
+    .secondary-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        border-color: var(--border);
+        color: var(--text-muted);
+        background: #F9FAFB;
+    }
+
+    .print-hint {
+        font-size: 0.85rem;
+        background: #FEF3C7;
+        padding: 12px;
+        border-radius: 8px;
+        color: #92400E;
+        line-height: 1.6;
+    }
+    .print-hint ul {
+        margin-top: 5px;
+        padding-left: 20px;
+    }
+
+    .preview-wrapper {
+        flex: 1;
+        overflow: auto;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+    }
+    
+    .placeholder-text {
+        text-align: center;
+        color: var(--text-muted);
+        margin-top: 20vh;
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .placeholder-text h3 {
+        color: var(--primary);
+        margin-bottom: 10px;
+    }
+
+    .a4-page {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    .a4-page:hover {
+        transform: scale(1.01);
+    }
+}
+
+/* A4 PAGE 核心設定 (共用) */
+.a4-page {
+    width: 297mm;
+    height: 209.5mm; /* 稍微小於 210mm 避免意外換頁 */
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(3, 90mm);
+    grid-template-rows: repeat(3, 60mm);
+    justify-content: center;
+    align-content: center;
+    overflow: hidden;
+    position: relative;
+    /* 強制在印出時每一頁都獨立 */
+    page-break-after: always;
+}
+.a4-page:last-child {
+    page-break-after: auto;
+}
+
+.nametag {
+    width: 100%; 
+    height: 100%; 
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: contain;
+    background-color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.nametag-text {
+    font-family: 'YouYuan', '幼圆', 'Noto Sans TC', sans-serif;
+    font-weight: normal; /* 使用 normal 避免原生加粗破圖 */
+    -webkit-text-stroke: 3px currentColor; /* 使用文字描邊來模擬完美的粗體效果，不會有空心破圖問題 */
+    text-align: center;
+    z-index: 2;
+    word-break: break-all;
+    padding: 0 10mm;
+    /* 預設字體陰影，增加可讀性 */
+    text-shadow: 0px 2px 4px rgba(255,255,255,0.8), 0px -1px 2px rgba(255,255,255,0.8);
+    /* 移除固定的 margin-bottom，改由 JavaScript 設定 transform: translate */
+}
+
+/* 列印專用佈局 (PRINT LAYOUT) */
+@media print {
+    @page {
+        size: A4 landscape;
+        margin: 0; /* 移除所有邊距 */
+    }
+
+    .no-print, .ui-wrapper {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+    }
+
+    .preview-wrapper {
+        padding: 0;
+        background: none;
+        display: block;
+        height: auto;
+        overflow: visible;
+    }
+
+    .placeholder-text {
+        display: none;
+    }
+
+    .a4-page {
+        box-shadow: none;
+        margin: 0;
+        /* 在列印模式中加入極淡的輔助裁切線 */
+        border: none;
+    }
+    
+    .nametag {
+        border-right: 0.5px dotted rgba(0,0,0,0.2);
+        border-bottom: 0.5px dotted rgba(0,0,0,0.2);
+    }
+    /* 移除最外側的邊框 */
+    .nametag:nth-child(3n) {
+        border-right: none;
+    }
+    .nametag:nth-child(n+7) {
+        border-bottom: none;
+    }
+}
